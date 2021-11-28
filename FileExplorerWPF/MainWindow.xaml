@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileExplorerWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+    Style="{DynamicResource CustomWindowStyle}">
+
     <Grid>
-        
+        <Button Content="Button" HorizontalAlignment="Left" Margin="427,210,0,0" Click="themeChange" VerticalAlignment="Top" Width="75"/>
+
     </Grid>
 </Window>

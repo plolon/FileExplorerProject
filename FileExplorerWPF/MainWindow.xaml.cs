@@ -24,5 +24,9 @@ namespace FileExplorerWPF
         {
             InitializeComponent();
         }
+        private void themeChange(object sender, RoutedEventArgs e)
+        {
+            ThemeChanger.SetColourfulDarkTheme(this);
+        }
     }
 }
