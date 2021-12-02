@@ -22,7 +22,6 @@ namespace FileExplorerWPF.Files
 
         public FileControl()
         {
-            IconToImage
             InitializeComponent();
         }
     }

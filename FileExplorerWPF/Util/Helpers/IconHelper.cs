@@ -29,5 +29,7 @@ namespace FileExplorerWPF.Util
                 MessageBox.Show("Failed to delete unused bitmap object");
                 return null;
             }
+            return image;
+        }
     }
 }

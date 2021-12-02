@@ -13,6 +13,8 @@ namespace FileExplorerWPF.Files
         public DateTime DateModified { get; set; }
         public FileType Type { get; set; }
 
+        public long SizeBytes { get; set; }
+
         public bool IsFile => Type == FileType.File;
         public bool IsFolder => Type == FileType.Folder;
         public bool IsDrive => Type == FileType.Drive;

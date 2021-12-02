@@ -79,8 +79,9 @@
     <Compile Include="Utilities\Command.cs" />
     <Compile Include="Utilities\CommandParam.cs" />
     <Compile Include="Utilities\ScrollViewerHelper.cs" />
-    <Compile Include="Util\IconHelper.cs" />
-    <Compile Include="Util\IconToImage.cs" />
+    <Compile Include="Util\Converters\FileSizeFormatConverter.cs" />
+    <Compile Include="Util\Helpers\IconHelper.cs" />
+    <Compile Include="Util\Converters\IconToImageConverter.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="Files\FileControl.xaml">
       <SubType>Designer</SubType>
