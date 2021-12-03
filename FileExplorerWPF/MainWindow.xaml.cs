@@ -18,7 +18,6 @@ namespace FileExplorerWPF
         public MainWindow()
         {
             InitializeComponent();
-
             // test file
             FileModel fileModel = new FileModel()
             {
@@ -29,7 +28,6 @@ namespace FileExplorerWPF
                 Type = FileType.File,
                 SizeBytes = 2194242,
             };
-
             FileControl fileControl = new FileControl(fileModel);
             Model.AddFile(fileControl);
         }
