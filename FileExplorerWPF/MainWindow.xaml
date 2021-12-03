@@ -3,9 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FileExplorerWPF"
+        xmlns:local="clr-namespace:FileExplorerWPF" 
+        xmlns:viewmodels="clr-namespace:FileExplorerWPF.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280"
         Style="{DynamicResource CustomWindowStyle}">
-    <Grid/>
+    <Window.DataContext>
+        <viewmodels:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="640"/>
+            <ColumnDefinition Width="640"/>
+        </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding FileItems, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="1"></ListBox>
+    </Grid>
 </Window>

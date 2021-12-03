@@ -23,6 +23,13 @@ namespace FileExplorerWPF.Files
         public FileControl()
         {
             InitializeComponent();
+            File = new FileModel();
+        }
+        public FileControl(FileModel fileModel)
+        {
+            InitializeComponent();
+
+            File = fileModel;
         }
     }
 }
