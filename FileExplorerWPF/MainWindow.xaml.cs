@@ -1,4 +1,5 @@
-﻿using FileExplorerWPF.Files;
+﻿using FileExplorerWPF.Explorer;
+using FileExplorerWPF.Files;
 using FileExplorerWPF.ViewModel;
 using System;
 using System.Windows;
@@ -19,17 +20,29 @@ namespace FileExplorerWPF
         {
             InitializeComponent();
             // test file
-            FileModel fileModel = new FileModel()
+            //FileModel fileModel = new FileModel()
+            //{
+            //    Name = "testName.txt",
+            //    Path = "testPath",
+            //    DateCreated = DateTime.Now,
+            //    DateModified = DateTime.Now,
+            //    Type = FileType.File,
+            //    SizeBytes = 2194242,
+            //};
+            //FileControl fileControl = new FileControl(fileModel);
+            //Model.AddFile(fileControl);
+
+            foreach(var folder in Fetcher.GetDirectories(@"X:\test"))
             {
-                Name = "testName.txt",
-                Path = "testPath",
-                DateCreated = DateTime.Now,
-                DateModified = DateTime.Now,
-                Type = FileType.File,
-                SizeBytes = 2194242,
-            };
-            FileControl fileControl = new FileControl(fileModel);
-            Model.AddFile(fileControl);
+                FileControl fileControl = new FileControl(folder);
+                Model.AddFile(fileControl);
+            }
+
+            foreach(var file in Fetcher.GetFiles(@"X:\test"))
+            {
+                FileControl fileControl = new FileControl(file);
+                Model.AddFile(fileControl);
+            }
         }
     }
 }

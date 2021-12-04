@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FileExplorerWPF" 
         xmlns:viewmodels="clr-namespace:FileExplorerWPF.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280"
+        Title="Twuj stary" Height="720" Width="1280"
         Style="{DynamicResource CustomWindowStyle}">
     <Window.DataContext>
         <viewmodels:MainViewModel/>

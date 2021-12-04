@@ -25,7 +25,7 @@ namespace FileExplorerWPF.Explorer
                     currentFile = file;
                     if (Path.GetExtension(file) != ".lnk")
                     {
-                        FileInfo fileInfo = new FileInfo(path);
+                        FileInfo fileInfo = new FileInfo(file);
                         FileModel fileModel = new FileModel()
                         {
                             Icon = IconHelper.GetIconOfFile(file, true, false),
@@ -101,7 +101,7 @@ namespace FileExplorerWPF.Explorer
                             DateCreated = dInfo.CreationTime,
                             DateModified = dInfo.LastWriteTime,
                             Type = FileType.Folder,
-                            SizeBytes = 0
+                            SizeBytes = long.MaxValue
                         };
 
                         result.Add(dModel);

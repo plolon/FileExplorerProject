@@ -1,5 +1,4 @@
-﻿using FileExplorerWPF.Util;
-using System;
+﻿using System;
 using System.Windows.Controls;
 
 namespace FileExplorerWPF.Files
