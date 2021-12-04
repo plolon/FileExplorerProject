@@ -32,17 +32,7 @@ namespace FileExplorerWPF
             //FileControl fileControl = new FileControl(fileModel);
             //Model.AddFile(fileControl);
 
-            foreach(var folder in Fetcher.GetDirectories(@"X:\test"))
-            {
-                FileControl fileControl = new FileControl(folder);
-                Model.AddFile(fileControl);
-            }
-
-            foreach(var file in Fetcher.GetFiles(@"X:\test"))
-            {
-                FileControl fileControl = new FileControl(file);
-                Model.AddFile(fileControl);
-            }
+            Model.TryNavigateTo(@"X:\test");
         }
     }
 }
