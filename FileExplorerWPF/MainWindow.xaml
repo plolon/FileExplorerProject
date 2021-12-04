@@ -13,9 +13,18 @@
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="640"/>
-            <ColumnDefinition Width="640"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding FileItems, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="1"></ListBox>
+        <Grid VerticalAlignment="Top" Height="20" Grid.ColumnSpan="1">
+            <TextBlock Text="Ico" VerticalAlignment="Center" Margin="5,2,0,2" HorizontalAlignment="Left" Width="20"/>
+            <TextBlock Text="File Name" VerticalAlignment="Center" Margin="29,2,410,2" Grid.ColumnSpan="2"/>
+            <TextBlock Text="Date Created" VerticalAlignment="Center" Margin="0,2,283,2" HorizontalAlignment="Right" Width="125" TextAlignment="Center" Grid.Column="1"/>
+            <TextBlock Text="Date last Modified" VerticalAlignment="Center" Margin="0,2,156,2" HorizontalAlignment="Right" Width="125" TextAlignment="Center" Grid.Column="1"/>
+            <TextBlock Text="Type" VerticalAlignment="Center" Margin="0,2,84,2" HorizontalAlignment="Right" Width="70" TextAlignment="Center" Grid.Column="1"/>
+            <TextBlock Text="Size" VerticalAlignment="Center" Margin="0,2,7,2" HorizontalAlignment="Right" Width="75" TextAlignment="Center" Grid.Column="1"/>
+        </Grid>
+        <ListBox ItemsSource="{Binding FileItems, UpdateSourceTrigger=PropertyChanged}"
+                 HorizontalContentAlignment="Stretch" Margin="0,20,0,0" Grid.ColumnSpan="1"/>
     </Grid>
 </Window>
