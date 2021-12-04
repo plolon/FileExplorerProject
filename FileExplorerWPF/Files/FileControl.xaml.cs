@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace FileExplorerWPF.Files
 {
-    /// <summary>
-    /// Interaction logic for FileControl.xaml
-    /// </summary>
     public partial class FileControl : UserControl
     {
         public FileModel File
@@ -14,9 +13,6 @@ namespace FileExplorerWPF.Files
             set => this.DataContext = value;
         }
 
-        /// <summary>
-        /// A callback used for navigating to the path
-        /// </summary>
         public Action<FileModel> NavigateToPathCallback { get; set; }
 
         public FileControl()
@@ -28,6 +24,21 @@ namespace FileExplorerWPF.Files
         {
             InitializeComponent();
             File = fileModel;
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left && e.LeftButton == MouseButtonState.Pressed && e.ClickCount == 2)
+            {
+                NavigateToPathCallback?.Invoke(File);
+            }
+        }
+        private void UserControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                NavigateToPathCallback?.Invoke(File);
+            }   
         }
     }
 }

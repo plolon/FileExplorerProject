@@ -3,6 +3,7 @@ using FileExplorerWPF.Files;
 using FileExplorerWPF.Utils;
 using REghZyFramework.Utilities;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace FileExplorerWPF.ViewModel
 {
@@ -25,13 +26,14 @@ namespace FileExplorerWPF.ViewModel
 
                 foreach(var drive in Fetcher.GetDrives())
                 {
-                    FileControl fileControl = new FileControl(drive);
+                    FileControl fileControl = CreateFileControl(drive);
                     AddFile(fileControl);
                 }
             }
             else if (path.IsFile())
             {
                 //open file
+                MessageBox.Show($"Opening {path}");
             }
             else if (path.IsDirectory())
             {
@@ -39,13 +41,13 @@ namespace FileExplorerWPF.ViewModel
 
                 foreach(var file in Fetcher.GetFiles(path))
                 {
-                    FileControl fileControl = new FileControl(file);
+                    FileControl fileControl = CreateFileControl(file);
                     AddFile(fileControl);
                 }
 
                 foreach(var dir in Fetcher.GetDirectories(path))
                 {
-                    FileControl fileControl = new FileControl(dir);
+                    FileControl fileControl = CreateFileControl(dir);
                     AddFile(fileControl);
                 }
             }
@@ -84,7 +86,7 @@ namespace FileExplorerWPF.ViewModel
 
         public void SetupFileControlCallbacks(FileControl fileControl)
         {
-
+            fileControl.NavigateToPathCallback = NavigateFrom;
         }
     }
 }
