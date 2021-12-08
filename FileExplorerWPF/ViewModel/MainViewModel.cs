@@ -1,8 +1,10 @@
 ﻿using FileExplorerWPF.Explorer;
 using FileExplorerWPF.Files;
+using FileExplorerWPF.Util;
 using FileExplorerWPF.Util.Helpers;
 using FileExplorerWPF.Utils;
 using REghZyFramework.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -25,11 +27,11 @@ namespace FileExplorerWPF.ViewModel
         public void TryNavigateTo(string path)
         {
             // drive
-            if(string.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path))
             {
                 ClearFiles();
 
-                foreach(var drive in Fetcher.GetDrives())
+                foreach (var drive in Fetcher.GetDrives())
                 {
                     FileControl fileControl = CreateFileControl(drive);
                     AddFile(fileControl);
@@ -43,14 +45,24 @@ namespace FileExplorerWPF.ViewModel
             else if (path.IsDirectory())
             {
                 ClearFiles();
+                //create goBack file
+                FileModel back = new FileModel()
+                {
+                    Icon = new System.Drawing.Icon("parentW.ico"),
+                    Name = "..",
+                    Path = path.GetParentDirectory()
+                };
+                FileControl fileContro = CreateFileControl(back);
+                AddFile(fileContro);
 
-                foreach(var file in Fetcher.GetFiles(path))
+                //get existing files
+                foreach (var file in Fetcher.GetFiles(path))
                 {
                     FileControl fileControl = CreateFileControl(file);
                     AddFile(fileControl);
                 }
 
-                foreach(var dir in Fetcher.GetDirectories(path))
+                foreach (var dir in Fetcher.GetDirectories(path))
                 {
                     FileControl fileControl = CreateFileControl(dir);
                     AddFile(fileControl);
@@ -58,7 +70,7 @@ namespace FileExplorerWPF.ViewModel
             }
             else
             {
-                throw new System.Exception("IDK what just happened XD");
+                throw new System.Exception($"IDK what just happened {path}");
             }
         }
 

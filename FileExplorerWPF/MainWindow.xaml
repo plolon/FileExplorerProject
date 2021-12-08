@@ -18,7 +18,7 @@
         </Grid.ColumnDefinitions>
         <Grid VerticalAlignment="Top" Height="40" Grid.ColumnSpan="1">
             <TextBlock Text="Drive: " HorizontalAlignment="Left" Margin="10"></TextBlock>
-            <ComboBox x:Name="driveSelector" Width="40" Height="20" HorizontalAlignment="Left" Margin="50,10,0,0" ItemsSource="{Binding DriveList}" VerticalAlignment="Top" SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
+            <ComboBox x:Name="driveSelector" Width="50" Height="20" HorizontalAlignment="Left" Margin="50,10,0,0" ItemsSource="{Binding DriveList}" VerticalAlignment="Top" SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
         </Grid>
         <Grid VerticalAlignment="Top" Height="20" Grid.ColumnSpan="1" Margin="0,40,0,0">
             <TextBlock Text="Ico" VerticalAlignment="Center" Margin="5,2,0,2" HorizontalAlignment="Left" Width="20"/>

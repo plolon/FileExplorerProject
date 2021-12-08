@@ -27,7 +27,10 @@ namespace FileExplorerWPF.Utils
 
         public static string GetParentDirectory(this string fullpath)
         {
-            return Path.GetFileName(fullpath);
+            if (Directory.GetParent(fullpath) != null)
+                return Directory.GetParent(fullpath).FullName;
+            else
+                return "";
         }
 
         public static bool CheckPathIsShortcutFile(string path)

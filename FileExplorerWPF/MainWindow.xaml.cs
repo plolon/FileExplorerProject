@@ -31,6 +31,7 @@ namespace FileExplorerWPF
             //};
             //FileControl fileControl = new FileControl(fileModel);
             //Model.AddFile(fileControl);
+            Model.TryNavigateTo("");
         }
 
         private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
