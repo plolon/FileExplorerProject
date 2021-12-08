@@ -7,20 +7,21 @@
              xmlns:local="clr-namespace:FileExplorerWPF.Files"
              xmlns:Util="clr-namespace:FileExplorerWPF.Util" xmlns:Converters="clr-namespace:FileExplorerWPF.Util.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="20" d:DesignWidth="800"
+             d:DesignHeight="20" d:DesignWidth="600"
             KeyDown="UserControl_KeyDown">
     <UserControl.Resources>
+        <Converters:DateTimeConverter x:Key="DateTimeConverter"/>
         <Converters:FileSizeFormatConverter x:Key="FileSizeFormatConverter"/>
         <Converters:IconToImageConverter x:Key="IconToImageConverter"/>
     </UserControl.Resources>
     <Grid MouseDown="Grid_MouseDown">
         <Grid Background="Transparent">
             <Image Source="{Binding Icon, Converter={StaticResource IconToImageConverter}}" HorizontalAlignment="Left" Width="20" Height="20"/>
-            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="22,2,405,2"/>
-            <TextBlock Text="{Binding DateCreated}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,2,278,2" Width="125"/>
-            <TextBlock Text="{Binding DateModified}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,2,151,2" Width="125"/>
-            <TextBlock Text="{Binding Type}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,2,79,2" Width="70"/>
-            <TextBlock Text="{Binding SizeBytes, Converter={StaticResource FileSizeFormatConverter}}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,2,2,2" Width="75"/>
+            <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="22,2,2,0" Width="146"/>
+            <TextBlock Text="{Binding DateCreated, Converter={StaticResource DateTimeConverter}}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="172,2,2,0" Width="134"/>
+            <TextBlock Text="{Binding DateModified, Converter={StaticResource DateTimeConverter}}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="310,2,2,0" Width="134"/>
+            <TextBlock Text="{Binding Type}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="448,2,2,0" Width="71"/>
+            <TextBlock Text="{Binding SizeBytes, Converter={StaticResource FileSizeFormatConverter}}" TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="523,2,2,0" Width="71"/>
         </Grid>
     </Grid>
 </UserControl>
