@@ -1,7 +1,9 @@
 ﻿using FileExplorerWPF.Explorer;
 using FileExplorerWPF.Files;
+using FileExplorerWPF.Util.Helpers;
 using FileExplorerWPF.Utils;
 using REghZyFramework.Utilities;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 
@@ -10,9 +12,12 @@ namespace FileExplorerWPF.ViewModel
     public class MainViewModel : BaseViewModel
     {
         public ObservableCollection<FileControl> FileItems { get; set; }
+        public List<string> DriveList { get; set; }
+
         public MainViewModel()
         {
             FileItems = new ObservableCollection<FileControl>();
+            DriveList = DriveHelper.AvailableDrives();
         }
 
         #region Navigation

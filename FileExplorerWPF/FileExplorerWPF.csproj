@@ -81,6 +81,7 @@
     <Compile Include="Utilities\CommandParam.cs" />
     <Compile Include="Utilities\ScrollViewerHelper.cs" />
     <Compile Include="Util\Converters\FileSizeFormatConverter.cs" />
+    <Compile Include="Util\Helpers\DriveHelper.cs" />
     <Compile Include="Util\Helpers\ExplorerHelper.cs" />
     <Compile Include="Util\Helpers\IconHelper.cs" />
     <Compile Include="Util\Converters\IconToImageConverter.cs" />

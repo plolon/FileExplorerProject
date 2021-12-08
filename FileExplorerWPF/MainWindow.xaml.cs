@@ -31,8 +31,12 @@ namespace FileExplorerWPF
             //};
             //FileControl fileControl = new FileControl(fileModel);
             //Model.AddFile(fileControl);
+        }
 
-            Model.TryNavigateTo(@"X:\test");
+        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            string path = driveSelector.SelectedItem.ToString();
+            Model.TryNavigateTo(path);
         }
     }
 }
