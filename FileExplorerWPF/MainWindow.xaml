@@ -23,7 +23,7 @@
         </Grid>
         <controls:HeaderControl Grid.Column="0" VerticalAlignment="Top"  Margin="0,40,0,0"></controls:HeaderControl>
         <controls:HeaderControl Grid.Column="1" VerticalAlignment="Top"  Margin="0,40,0,0"></controls:HeaderControl>
-        <ListBox ItemsSource="{Binding FileItems, UpdateSourceTrigger=PropertyChanged}"
+        <ListBox x:Name="leftListBox" ItemsSource="{Binding FileItems, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,0" Grid.ColumnSpan="1" Width="620" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
     </Grid>
 </Window>
