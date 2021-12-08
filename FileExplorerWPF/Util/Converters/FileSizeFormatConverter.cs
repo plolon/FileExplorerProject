@@ -17,6 +17,9 @@ namespace FileExplorerWPF.Util.Converters
         {
             if(value is long size)
             {
+                if (size == long.MaxValue)
+                    return "-";
+
                 StringBuilder sb = new StringBuilder(20);
                 StrFormatByteSize(size, sb, 20);
                 return sb.ToString();

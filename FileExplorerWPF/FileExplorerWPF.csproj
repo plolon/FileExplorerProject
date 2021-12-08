@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Explorer\Fetcher.cs" />
     <Compile Include="Files\FileControl.xaml.cs">
       <DependentUpon>FileControl.xaml</DependentUpon>
     </Compile>
@@ -80,6 +81,8 @@
     <Compile Include="Utilities\CommandParam.cs" />
     <Compile Include="Utilities\ScrollViewerHelper.cs" />
     <Compile Include="Util\Converters\FileSizeFormatConverter.cs" />
+    <Compile Include="Util\Helpers\DriveHelper.cs" />
+    <Compile Include="Util\Helpers\ExplorerHelper.cs" />
     <Compile Include="Util\Helpers\IconHelper.cs" />
     <Compile Include="Util\Converters\IconToImageConverter.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -153,8 +156,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Explorer\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
