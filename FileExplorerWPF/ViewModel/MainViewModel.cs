@@ -7,6 +7,7 @@ using REghZyFramework.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 
 namespace FileExplorerWPF.ViewModel
@@ -45,15 +46,7 @@ namespace FileExplorerWPF.ViewModel
             else if (path.IsDirectory())
             {
                 ClearFiles();
-                //create goBack file
-                FileModel back = new FileModel()
-                {
-                    Icon = new System.Drawing.Icon("parentW.ico"),
-                    Name = "..",
-                    Path = path.GetParentDirectory()
-                };
-                FileControl fileContro = CreateFileControl(back);
-                AddFile(fileContro);
+                AddGoBack(path);
 
                 //get existing files
                 foreach (var file in Fetcher.GetFiles(path))
@@ -79,24 +72,61 @@ namespace FileExplorerWPF.ViewModel
             TryNavigateTo(model.Path);
         }
 
+        public void AddGoBack(string path)
+        {
+            FileModel back = new FileModel()
+            {
+                Icon = new System.Drawing.Icon("parentW.ico"),
+                Name = "..",
+                Path = path.GetParentDirectory(),
+                Type = null
+            };
+            FileControl fileContro = CreateFileControl(back);
+            AddFile(fileContro);
+        } 
+        public void AddGoBack(FileModel model)
+        {
+            FileControl fileContro = CreateFileControl(model);
+            AddFile(fileContro);
+        }
+
         #endregion Nvigation
 
         #region Sorting
 
         public void Sort(SortBy sortBy, SortType sortType)
         {
+            List<FileModel> files = new List<FileModel>();
             switch (sortBy)
             {
                 case SortBy.Name:
+                    files = FileItems.SortByName(sortType);
                     break;
                 case SortBy.DateCreated:
+                    files = FileItems.SortByDateCreated(sortType);
                     break;
                 case SortBy.DateModified:
+                    files = FileItems.SortByDateModified(sortType);
                     break;
                 case SortBy.Type:
+                    files = FileItems.SortByType(sortType);
                     break;
                 case SortBy.Size:
+                    files = FileItems.SortBySize(sortType);
                     break;
+            }
+            CreateControls(files);
+        }
+
+        private void CreateControls(List<FileModel> files)
+        {
+            var back = FileItems[0].File;
+            FileItems.Clear();
+            AddGoBack(back);
+            foreach(var file in files)
+            {
+                FileControl fileControl = new FileControl(file);
+                AddFile(fileControl);
             }
         }
 

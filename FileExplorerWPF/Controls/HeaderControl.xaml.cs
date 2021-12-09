@@ -25,7 +25,6 @@ namespace FileExplorerWPF.Controls
             }
         }
 
-
         public HeaderControl()
         {
             sortType = SortType.Ascending;
@@ -39,7 +38,26 @@ namespace FileExplorerWPF.Controls
 
         private void DateCreated_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow window = Window.GetWindow(this) as MainWindow;
+            window.Model.Sort(SortBy.DateCreated, getSortType());
+        }
 
+        private void DateModified_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = Window.GetWindow(this) as MainWindow;
+            window.Model.Sort(SortBy.DateModified, getSortType());
+        }
+
+        private void Type_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = Window.GetWindow(this) as MainWindow;
+            window.Model.Sort(SortBy.Type, getSortType());
+        }
+
+        private void Size_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = Window.GetWindow(this) as MainWindow;
+            window.Model.Sort(SortBy.Size, getSortType());
         }
     }
 }

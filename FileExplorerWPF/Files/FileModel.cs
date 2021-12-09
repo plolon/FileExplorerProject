@@ -11,7 +11,7 @@ namespace FileExplorerWPF.Files
 
         public DateTime? DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
-        public FileType Type { get; set; }
+        public FileType? Type { get; set; }
 
         public long? SizeBytes { get; set; }
 

@@ -10,8 +10,8 @@
         <Button Content="Ico" Width="20" HorizontalAlignment="Left"></Button>
         <Button x:Name="FileName" Content="FileName" Width="150" HorizontalAlignment="Left" Margin="20,0,0,0" Click="FileName_Click"></Button>
         <Button x:Name="DateCreated" Content="Date Created" Width="140" HorizontalAlignment="Left" Margin="170,0,0,0" Click="DateCreated_Click"></Button>
-        <Button Content="Date Last Modified" Width="140" HorizontalAlignment="Left" Margin="310,0,0,0"></Button>
-        <Button Content="Type" Width="75" HorizontalAlignment="Left" Margin="450,0,0,0"></Button>
-        <Button Content="Size" Width="75" HorizontalAlignment="Left" Margin="525,0,0,0"></Button>
+        <Button x:Name="DateModified"  Content="Date Last Modified" Width="140" HorizontalAlignment="Left" Margin="310,0,0,0" Click="DateModified_Click"></Button>
+        <Button x:Name="Type" Content="Type" Width="75" HorizontalAlignment="Left" Margin="450,0,0,0" Click="Type_Click"></Button>
+        <Button x:Name="Size" Content="Size" Width="75" HorizontalAlignment="Left" Margin="525,0,0,0" Click="Size_Click"></Button>
     </Grid>
 </UserControl>
