@@ -30,7 +30,7 @@ namespace FileExplorerWPF.ViewModel
             if (string.IsNullOrEmpty(path))
             {
                 ClearFiles();
-
+                    
                 foreach (var drive in Fetcher.GetDrives())
                 {
                     FileControl fileControl = CreateFileControl(drive);
@@ -80,6 +80,27 @@ namespace FileExplorerWPF.ViewModel
         }
 
         #endregion Nvigation
+
+        #region Sorting
+
+        public void Sort(SortBy sortBy, SortType sortType)
+        {
+            switch (sortBy)
+            {
+                case SortBy.Name:
+                    break;
+                case SortBy.DateCreated:
+                    break;
+                case SortBy.DateModified:
+                    break;
+                case SortBy.Type:
+                    break;
+                case SortBy.Size:
+                    break;
+            }
+        }
+
+        #endregion Sorting
 
         public void AddFile(FileControl file)
         {

@@ -90,6 +90,7 @@
     <Compile Include="Util\Helpers\IconHelper.cs" />
     <Compile Include="Util\Converters\IconToImageConverter.cs" />
     <Compile Include="Util\Helpers\SortingHelper.cs" />
+    <Compile Include="Util\Helpers\SortTypes.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="Controls\HeaderControl.xaml">
       <SubType>Designer</SubType>
