@@ -39,5 +39,10 @@ namespace FileExplorerWPF
             string path = driveSelector.SelectedItem.ToString();
             Model.TryNavigateTo(path);
         }
+
+        private void TextBlock_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MessageBox.Show("twuj stary");
+        }
     }
 }

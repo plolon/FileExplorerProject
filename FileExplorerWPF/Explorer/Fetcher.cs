@@ -80,7 +80,6 @@ namespace FileExplorerWPF.Explorer
                         DateCreated = dInfo.CreationTime,
                         DateModified = dInfo.LastWriteTime,
                         Type = FileType.Folder,
-                        SizeBytes = long.MaxValue
                     };
 
                     result.Add(dModel);
@@ -101,7 +100,6 @@ namespace FileExplorerWPF.Explorer
                             DateCreated = dInfo.CreationTime,
                             DateModified = dInfo.LastWriteTime,
                             Type = FileType.Folder,
-                            SizeBytes = long.MaxValue
                         };
 
                         result.Add(dModel);
@@ -140,7 +138,6 @@ namespace FileExplorerWPF.Explorer
                         Icon = IconHelper.GetIconOfFile(drive, true, true),
                         Name = dInfo.Name,
                         Path = dInfo.Name,
-                        DateModified = DateTime.Now,
                         Type = FileType.Drive,
                         SizeBytes = dInfo.TotalSize
                     };

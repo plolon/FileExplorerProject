@@ -57,8 +57,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\HeaderControl.xaml.cs">
+      <DependentUpon>HeaderControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Explorer\Fetcher.cs" />
-    <Compile Include="Files\FileControl.xaml.cs">
+    <Compile Include="Controls\FileControl.xaml.cs">
       <DependentUpon>FileControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Files\FileModel.cs" />
@@ -80,13 +83,20 @@
     <Compile Include="Utilities\Command.cs" />
     <Compile Include="Utilities\CommandParam.cs" />
     <Compile Include="Utilities\ScrollViewerHelper.cs" />
+    <Compile Include="Util\Converters\DateTimeConverter.cs" />
     <Compile Include="Util\Converters\FileSizeFormatConverter.cs" />
     <Compile Include="Util\Helpers\DriveHelper.cs" />
     <Compile Include="Util\Helpers\ExplorerHelper.cs" />
     <Compile Include="Util\Helpers\IconHelper.cs" />
     <Compile Include="Util\Converters\IconToImageConverter.cs" />
+    <Compile Include="Util\Helpers\SortingHelper.cs" />
+    <Compile Include="Util\Helpers\SortTypes.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Page Include="Files\FileControl.xaml">
+    <Page Include="Controls\HeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FileControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
