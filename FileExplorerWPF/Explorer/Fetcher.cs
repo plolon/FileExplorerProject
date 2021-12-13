@@ -10,7 +10,7 @@ namespace FileExplorerWPF.Explorer
 {
     public static class Fetcher
     {
-        public static List<FileModel> GetFiles(string path)
+        public static List<FileModel> GetFiles(string path, FileItemsType type)
         {
             List<FileModel> result = new List<FileModel>();
             if (!path.IsDirectory())
@@ -34,7 +34,8 @@ namespace FileExplorerWPF.Explorer
                             DateCreated = fileInfo.CreationTime,
                             DateModified = fileInfo.LastWriteTime,
                             Type = FileType.File,
-                            SizeBytes = fileInfo.Length
+                            SizeBytes = fileInfo.Length,
+                            FileItemsType = type
                         };
 
                         result.Add(fileModel);
@@ -58,7 +59,7 @@ namespace FileExplorerWPF.Explorer
             return result;
         }
 
-        public static List<FileModel> GetDirectories(string path)
+        public static List<FileModel> GetDirectories(string path, FileItemsType type)
         {
             List<FileModel> result = new List<FileModel>();
             if (!path.IsDirectory())
@@ -80,6 +81,7 @@ namespace FileExplorerWPF.Explorer
                         DateCreated = dInfo.CreationTime,
                         DateModified = dInfo.LastWriteTime,
                         Type = FileType.Folder,
+                        FileItemsType = type
                     };
 
                     result.Add(dModel);
@@ -100,6 +102,7 @@ namespace FileExplorerWPF.Explorer
                             DateCreated = dInfo.CreationTime,
                             DateModified = dInfo.LastWriteTime,
                             Type = FileType.Folder,
+                            FileItemsType = type
                         };
 
                         result.Add(dModel);
@@ -125,7 +128,7 @@ namespace FileExplorerWPF.Explorer
             return result;
         }
 
-        public static List<FileModel> GetDrives()
+        public static List<FileModel> GetDrives(FileItemsType type)
         {
             List<FileModel> result = new List<FileModel>();
             try
@@ -139,7 +142,8 @@ namespace FileExplorerWPF.Explorer
                         Name = dInfo.Name,
                         Path = dInfo.Name,
                         Type = FileType.Drive,
-                        SizeBytes = dInfo.TotalSize
+                        SizeBytes = dInfo.TotalSize,
+                        FileItemsType = type
                     };
 
                     result.Add(dModel);

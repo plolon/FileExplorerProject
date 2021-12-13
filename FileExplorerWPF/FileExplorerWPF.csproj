@@ -64,6 +64,7 @@
     <Compile Include="Controls\FileControl.xaml.cs">
       <DependentUpon>FileControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Explorer\FileItemsType.cs" />
     <Compile Include="Files\FileModel.cs" />
     <Compile Include="Files\FileType.cs" />
     <Compile Include="ThemeChanger.cs" />

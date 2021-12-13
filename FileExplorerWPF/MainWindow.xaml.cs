@@ -31,13 +31,14 @@ namespace FileExplorerWPF
             //};
             //FileControl fileControl = new FileControl(fileModel);
             //Model.AddFile(fileControl);
-            Model.TryNavigateTo("");
+            Model.TryNavigateTo("", FileItemsType.Left);
+            Model.TryNavigateTo("", FileItemsType.Right);
         }
 
         private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             string path = driveSelector.SelectedItem.ToString();
-            Model.TryNavigateTo(path);
+            //Model.TryNavigateTo(path);
         }
 
         private void TextBlock_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

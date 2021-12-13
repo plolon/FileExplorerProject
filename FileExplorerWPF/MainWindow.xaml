@@ -21,9 +21,11 @@
             <TextBlock Text="Drive: " HorizontalAlignment="Left" Margin="10"></TextBlock>
             <ComboBox x:Name="driveSelector" Width="50" Height="20" HorizontalAlignment="Left" Margin="50,10,0,0" ItemsSource="{Binding DriveList}" VerticalAlignment="Top" SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
         </Grid>
-        <controls:HeaderControl Grid.Column="0" VerticalAlignment="Top"  Margin="0,40,0,0"></controls:HeaderControl>
-        <controls:HeaderControl Grid.Column="1" VerticalAlignment="Top"  Margin="0,40,0,0"></controls:HeaderControl>
-        <ListBox x:Name="leftListBox" ItemsSource="{Binding FileItems, UpdateSourceTrigger=PropertyChanged}"
+        <controls:HeaderControl x:Name="leftHeader" Grid.Column="0" VerticalAlignment="Top"  Margin="0,40,0,0"></controls:HeaderControl>
+        <controls:HeaderControl x:Name="rightHeader" Grid.Column="1" VerticalAlignment="Top"  Margin="0,40,0,0"></controls:HeaderControl>
+        <ListBox x:Name="leftListBox" ItemsSource="{Binding FileItemsLeft, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,0" Grid.ColumnSpan="1" Width="620" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        <ListBox x:Name="rightListBox" ItemsSource="{Binding FileItemsRight, UpdateSourceTrigger=PropertyChanged}"
+                 HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,0" Grid.Column="1" Grid.ColumnSpan="1" Width="620" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
     </Grid>
 </Window>
