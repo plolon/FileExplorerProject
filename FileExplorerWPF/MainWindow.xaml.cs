@@ -1,7 +1,5 @@
 ﻿using FileExplorerWPF.Explorer;
-using FileExplorerWPF.Files;
 using FileExplorerWPF.ViewModel;
-using System;
 using System.Windows;
 
 namespace FileExplorerWPF
@@ -19,30 +17,19 @@ namespace FileExplorerWPF
         public MainWindow()
         {
             InitializeComponent();
-            // test file
-            //FileModel fileModel = new FileModel()
-            //{
-            //    Name = "testName.txt",
-            //    Path = "testPath",
-            //    DateCreated = DateTime.Now,
-            //    DateModified = DateTime.Now,
-            //    Type = FileType.File,
-            //    SizeBytes = 2194242,
-            //};
-            //FileControl fileControl = new FileControl(fileModel);
-            //Model.AddFile(fileControl);
-            Model.TryNavigateTo("");
+            Model.TryNavigateTo(null, FileItemsType.Left);
+            Model.TryNavigateTo(null, FileItemsType.Right);
+        }
+        private void driveSelectorLeft_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            string path = driveSelectorLeft.SelectedItem.ToString();
+            Model.TryNavigateTo(path, FileItemsType.Left);
         }
 
-        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void driveSelectorRight_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            string path = driveSelector.SelectedItem.ToString();
-            Model.TryNavigateTo(path);
-        }
-
-        private void TextBlock_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            MessageBox.Show("twuj stary");
+            string path = driveSelectorRight.SelectedItem.ToString();
+            Model.TryNavigateTo(path, FileItemsType.Right);
         }
     }
 }

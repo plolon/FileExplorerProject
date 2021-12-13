@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileExplorerWPF.Explorer;
+using System;
 using System.Drawing;
 
 namespace FileExplorerWPF.Files
@@ -19,5 +20,7 @@ namespace FileExplorerWPF.Files
         public bool IsFolder => Type == FileType.Folder;
         public bool IsDrive => Type == FileType.Drive;
         public bool IsShortcut => Type == FileType.Shortcut;
+
+        public FileItemsType FileItemsType { get; set; }
     }
 }

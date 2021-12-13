@@ -14,28 +14,32 @@ namespace FileExplorerWPF.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        public ObservableCollection<FileControl> FileItems { get; set; }
-        public List<string> DriveList { get; set; }
+        public ObservableCollection<FileControl> FileItemsLeft { get; set; }
+        public ObservableCollection<FileControl> FileItemsRight { get; set; }
+        public List<string> DriveListLeft { get; set; }
+        public List<string> DriveListRight { get; set; }
 
         public MainViewModel()
         {
-            FileItems = new ObservableCollection<FileControl>();
-            DriveList = DriveHelper.AvailableDrives();
+            FileItemsLeft = new ObservableCollection<FileControl>();
+            FileItemsRight = new ObservableCollection<FileControl>();
+            DriveListLeft = DriveHelper.AvailableDrives();
+            DriveListRight = DriveHelper.AvailableDrives();
         }
 
         #region Navigation
 
-        public void TryNavigateTo(string path)
+        public void TryNavigateTo(string path, FileItemsType type)
         {
             // drive
             if (string.IsNullOrEmpty(path))
             {
-                ClearFiles();
+                ClearFiles(type);
                     
-                foreach (var drive in Fetcher.GetDrives())
+                foreach (var drive in Fetcher.GetDrives(type))
                 {
                     FileControl fileControl = CreateFileControl(drive);
-                    AddFile(fileControl);
+                    AddFile(fileControl, type);
                 }
             }
             else if (path.IsFile())
@@ -45,20 +49,20 @@ namespace FileExplorerWPF.ViewModel
             }
             else if (path.IsDirectory())
             {
-                ClearFiles();
-                AddGoBack(path);
+                ClearFiles(type);
+                AddGoBack(path, type);
 
                 //get existing files
-                foreach (var file in Fetcher.GetFiles(path))
+                foreach (var file in Fetcher.GetFiles(path, type))
                 {
                     FileControl fileControl = CreateFileControl(file);
-                    AddFile(fileControl);
+                    AddFile(fileControl, type);
                 }
 
-                foreach (var dir in Fetcher.GetDirectories(path))
+                foreach (var dir in Fetcher.GetDirectories(path, type))
                 {
                     FileControl fileControl = CreateFileControl(dir);
-                    AddFile(fileControl);
+                    AddFile(fileControl, type);
                 }
             }
             else
@@ -69,80 +73,89 @@ namespace FileExplorerWPF.ViewModel
 
         public void NavigateFrom(FileModel model)
         {
-            TryNavigateTo(model.Path);
+            TryNavigateTo(model.Path, model.FileItemsType);
         }
 
-        public void AddGoBack(string path)
+        public void AddGoBack(string path, FileItemsType type)
         {
             FileModel back = new FileModel()
             {
                 Icon = new System.Drawing.Icon("parentW.ico"),
                 Name = "..",
                 Path = path.GetParentDirectory(),
-                Type = null
+                Type = null,
+                FileItemsType = type
             };
             FileControl fileContro = CreateFileControl(back);
-            AddFile(fileContro);
+            AddFile(fileContro, type);
         } 
-        public void AddGoBack(FileModel model)
+        public void AddGoBack(FileModel model, FileItemsType type)
         {
             FileControl fileContro = CreateFileControl(model);
-            AddFile(fileContro);
+            AddFile(fileContro, type);
         }
 
         #endregion Nvigation
 
         #region Sorting
 
-        public void Sort(SortBy sortBy, SortType sortType)
+        public void Sort(SortBy sortBy, SortType sortType, FileItemsType type)
         {
             List<FileModel> files = new List<FileModel>();
             switch (sortBy)
             {
                 case SortBy.Name:
-                    files = FileItems.SortByName(sortType);
+                    files = GetFileItems(type).SortByName(sortType);
                     break;
                 case SortBy.DateCreated:
-                    files = FileItems.SortByDateCreated(sortType);
+                    files = GetFileItems(type).SortByDateCreated(sortType);
                     break;
                 case SortBy.DateModified:
-                    files = FileItems.SortByDateModified(sortType);
+                    files = GetFileItems(type).SortByDateModified(sortType);
                     break;
                 case SortBy.Type:
-                    files = FileItems.SortByType(sortType);
+                    files = GetFileItems(type).SortByType(sortType);
                     break;
                 case SortBy.Size:
-                    files = FileItems.SortBySize(sortType);
+                    files = GetFileItems(type).SortBySize(sortType);
                     break;
             }
-            CreateControls(files);
+            CreateControls(files, type);
         }
 
-        private void CreateControls(List<FileModel> files)
+        private void CreateControls(List<FileModel> files, FileItemsType type)
         {
-            var back = FileItems[0].File;
-            FileItems.Clear();
-            AddGoBack(back);
+            var back = GetFileItems(type)[0].File;
+            GetFileItems(type).Clear();
+            AddGoBack(back, type);
             foreach(var file in files)
             {
                 FileControl fileControl = new FileControl(file);
-                AddFile(fileControl);
+                AddFile(fileControl, type);
             }
         }
 
         #endregion Sorting
 
-        public void AddFile(FileControl file)
+        public void AddFile(FileControl file, FileItemsType type)
         {
-            FileItems.Add(file);
+            GetFileItems(type).Add(file);
         }
-        public void RemoveFile(FileControl file)
+        public void RemoveFile(FileControl file, FileItemsType type)
         {
-            FileItems.Remove(file);
+            GetFileItems(type).Remove(file);
         }
-        public void ClearFiles()
+        public void ClearFiles(FileItemsType type)
         {
-            FileItems.Clear();
+            GetFileItems(type).Clear();
+        }
+
+        public ObservableCollection<FileControl> GetFileItems(FileItemsType type)
+        {
+            if (type == FileItemsType.Left)
+                return FileItemsLeft;
+            else
+                return FileItemsRight;
         }
 
         public FileControl CreateFileControl(FileModel model)
