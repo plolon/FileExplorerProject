@@ -16,13 +16,15 @@ namespace FileExplorerWPF.ViewModel
     {
         public ObservableCollection<FileControl> FileItemsLeft { get; set; }
         public ObservableCollection<FileControl> FileItemsRight { get; set; }
-        public List<string> DriveList { get; set; }
+        public List<string> DriveListLeft { get; set; }
+        public List<string> DriveListRight { get; set; }
 
         public MainViewModel()
         {
             FileItemsLeft = new ObservableCollection<FileControl>();
             FileItemsRight = new ObservableCollection<FileControl>();
-            DriveList = DriveHelper.AvailableDrives();
+            DriveListLeft = DriveHelper.AvailableDrives();
+            DriveListRight = DriveHelper.AvailableDrives();
         }
 
         #region Navigation
