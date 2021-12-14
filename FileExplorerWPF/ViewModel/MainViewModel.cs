@@ -71,6 +71,11 @@ namespace FileExplorerWPF.ViewModel
             }
         }
 
+        internal void Refresh()
+        {
+
+        }
+
         public void NavigateFrom(FileModel model)
         {
             TryNavigateTo(model.Path, model.FileItemsType);

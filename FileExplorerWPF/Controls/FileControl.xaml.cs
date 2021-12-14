@@ -1,4 +1,5 @@
 ﻿using FileExplorerWPF.FileOperations;
+using FileExplorerWPF.Utils;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -37,23 +38,33 @@ namespace FileExplorerWPF.Files
         }
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 NavigateToPathCallback?.Invoke(File);
-            }   
+            }
         }
 
         private void Grid_Drop(object sender, DragEventArgs e)
         {
+            MainWindow window = Window.GetWindow(this) as MainWindow;
+            bool needRefresh = false;
+
             if (DragDropHelper.isDragging)
             {
-                
-                var data = e.Data.GetData(typeof(List<string>)) as List<string>;
-                foreach(var x in data)
-                {
-                    MessageBox.Show(x);
-                }
+                List<string> files = e.Data.GetData(typeof(List<string>)) as List<string>;
                 DragDropHelper.isDragging = false;
+
+                foreach (string file in files)
+                {
+                    needRefresh = true;
+                    if(File.Type == FileType.Folder)
+                    file.Move(File.Path);
+                }
+                if (needRefresh)
+                {
+                    window.Model.Refresh();
+                    MessageBox.Show("R");
+                }
             }
         }
     }
