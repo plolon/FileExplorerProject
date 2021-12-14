@@ -65,6 +65,7 @@
       <DependentUpon>FileControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Explorer\FileItemsType.cs" />
+    <Compile Include="FileOperations\DragDropHelper.cs" />
     <Compile Include="FileOperations\FileIOHelper.cs" />
     <Compile Include="FileOperations\MoveType.cs" />
     <Compile Include="Files\FileModel.cs" />

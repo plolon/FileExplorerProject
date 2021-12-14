@@ -14,7 +14,7 @@
         <Converters:FileSizeFormatConverter x:Key="FileSizeFormatConverter"/>
         <Converters:IconToImageConverter x:Key="IconToImageConverter"/>
     </UserControl.Resources>
-    <Grid MouseDown="Grid_MouseDown">
+    <Grid MouseDown="Grid_MouseDown" Drop="Grid_Drop" AllowDrop="True">
         <Grid Background="Transparent">
             <Image Source="{Binding Icon, Converter={StaticResource IconToImageConverter}}" HorizontalAlignment="Left" Width="20" Height="20"/>
             <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="22,2,2,0" Width="146"/>

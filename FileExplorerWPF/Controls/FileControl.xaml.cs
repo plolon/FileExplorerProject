@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileExplorerWPF.FileOperations;
+using System;
 using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,6 +41,15 @@ namespace FileExplorerWPF.Files
             {
                 NavigateToPathCallback?.Invoke(File);
             }   
+        }
+
+        private void Grid_Drop(object sender, DragEventArgs e)
+        {
+            if (DragDropHelper.isDragging)
+            {
+                MessageBox.Show("XDDDDD");
+                DragDropHelper.isDragging = false;
+            }
         }
     }
 }
