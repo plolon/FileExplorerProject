@@ -1,6 +1,8 @@
 ﻿using FileExplorerWPF.Explorer;
 using FileExplorerWPF.FileOperations;
+using FileExplorerWPF.Files;
 using FileExplorerWPF.ViewModel;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -40,11 +42,11 @@ namespace FileExplorerWPF
             if(e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
             {
                 ListBox parent = sender as ListBox;
-                object data = leftListBox.SelectedItem;
-                if(data != null)
+                List<string> files = leftListBox.SelectedItems.GetSelectedFiles();
+                if (files != null)
                 {
                     DragDropHelper.isDragging = true;
-                    DragDrop.DoDragDrop(parent, data, DragDropEffects.Copy);
+                    DragDrop.DoDragDrop(parent, files, DragDropEffects.Copy);
                 }
                 DragDropHelper.isDragging = false;
             }

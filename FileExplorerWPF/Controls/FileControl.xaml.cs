@@ -1,6 +1,6 @@
 ﻿using FileExplorerWPF.FileOperations;
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -47,7 +47,12 @@ namespace FileExplorerWPF.Files
         {
             if (DragDropHelper.isDragging)
             {
-                MessageBox.Show("XDDDDD");
+                
+                var data = e.Data.GetData(typeof(List<string>)) as List<string>;
+                foreach(var x in data)
+                {
+                    MessageBox.Show(x);
+                }
                 DragDropHelper.isDragging = false;
             }
         }
