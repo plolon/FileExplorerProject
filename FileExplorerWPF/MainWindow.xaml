@@ -28,8 +28,10 @@
         <controls:HeaderControl x:Name="leftHeader" Grid.Column="0" VerticalAlignment="Top"  Margin="0,40,0,0"></controls:HeaderControl>
         <controls:HeaderControl x:Name="rightHeader" Grid.Column="1" VerticalAlignment="Top"  Margin="0,40,0,0"></controls:HeaderControl>
         <ListBox x:Name="leftListBox" ItemsSource="{Binding FileItemsLeft, UpdateSourceTrigger=PropertyChanged}"
-                 HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,0" Grid.ColumnSpan="1" Width="620" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                 HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,0" Grid.Column="0"
+                 Grid.ColumnSpan="1" Width="620" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Extended" MouseMove="leftListBox_MouseMove" Drop="leftListBox_Drop"/>
         <ListBox x:Name="rightListBox" ItemsSource="{Binding FileItemsRight, UpdateSourceTrigger=PropertyChanged}"
-                 HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,0" Grid.Column="1" Grid.ColumnSpan="1" Width="620" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                 HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,0" Grid.Column="1"
+                 Grid.ColumnSpan="1" Width="620" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Extended" Drop="rightListBox_Drop" AllowDrop="True" MouseMove="rightListBox_MouseMove"/>
     </Grid>
 </Window>

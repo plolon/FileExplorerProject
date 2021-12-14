@@ -17,7 +17,7 @@ namespace FileExplorerWPF.Utils
 
         public static bool IsDrive(this string path)
         {
-            return !string.IsNullOrEmpty(path) && Directory.Exists(path);
+            return !string.IsNullOrEmpty(path) && Directory.Exists(path) && string.IsNullOrEmpty(path.GetParentDirectory());
         }
 
         public static string GetFileName(this string fullpath)
