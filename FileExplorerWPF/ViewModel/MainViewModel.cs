@@ -16,6 +16,8 @@ namespace FileExplorerWPF.ViewModel
     {
         public ObservableCollection<FileControl> FileItemsLeft { get; set; }
         public ObservableCollection<FileControl> FileItemsRight { get; set; }
+        public string CurrentPathLeft { get; set; }
+        public string CurrentPathRight { get; set; }
         public List<string> DriveListLeft { get; set; }
         public List<string> DriveListRight { get; set; }
 
@@ -31,11 +33,16 @@ namespace FileExplorerWPF.ViewModel
 
         public void TryNavigateTo(string path, FileItemsType type)
         {
+            if (type == FileItemsType.Left)
+                CurrentPathLeft = path;
+            else
+                CurrentPathRight = path;
+
             // drive
             if (string.IsNullOrEmpty(path))
             {
                 ClearFiles(type);
-                    
+
                 foreach (var drive in Fetcher.GetDrives(type))
                 {
                     FileControl fileControl = CreateFileControl(drive);
@@ -73,7 +80,8 @@ namespace FileExplorerWPF.ViewModel
 
         internal void Refresh()
         {
-
+            TryNavigateTo(CurrentPathLeft, FileItemsType.Left);
+            TryNavigateTo(CurrentPathRight, FileItemsType.Right);
         }
 
         public void NavigateFrom(FileModel model)
@@ -93,7 +101,7 @@ namespace FileExplorerWPF.ViewModel
             };
             FileControl fileContro = CreateFileControl(back);
             AddFile(fileContro, type);
-        } 
+        }
         public void AddGoBack(FileModel model, FileItemsType type)
         {
             FileControl fileContro = CreateFileControl(model);
@@ -133,7 +141,7 @@ namespace FileExplorerWPF.ViewModel
             var back = GetFileItems(type)[0].File;
             GetFileItems(type).Clear();
             AddGoBack(back, type);
-            foreach(var file in files)
+            foreach (var file in files)
             {
                 FileControl fileControl = new FileControl(file);
                 AddFile(fileControl, type);

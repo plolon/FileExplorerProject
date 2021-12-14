@@ -12,19 +12,23 @@ namespace FileExplorerWPF.FileOperations
 
         public static void Move(this string file, string destination)
         {
-            if (File.Exists(file))
+            if(file != destination)
             {
+                string path = destination;
+                if (destination.IsFile())
+                {
+                    path = destination.GetParentDirectory();
+                }
+
                 if (file.IsDirectory())
                 {
-                    string newPath = string.Format($@"{destination}\{file.GetFileName()}");
+                    string newPath = string.Format($@"{path}\{file.GetFileName()}");
                     Directory.Move(file, newPath);
-                    MessageBox.Show($"{file}, {newPath}");
                 }
                 else if (file.IsFile())
                 {
-                    string newPath = string.Format($@"{destination}\{file.GetFileName()}");
+                    string newPath = string.Format($@"{path}\{file.GetFileName()}");
                     File.Move(file, newPath);
-                    MessageBox.Show($"{file}, {newPath}");
                 }
                 else if (file.IsDrive())
                 {

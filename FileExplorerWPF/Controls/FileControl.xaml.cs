@@ -57,14 +57,10 @@ namespace FileExplorerWPF.Files
                 foreach (string file in files)
                 {
                     needRefresh = true;
-                    if(File.Type == FileType.Folder)
                     file.Move(File.Path);
                 }
                 if (needRefresh)
-                {
                     window.Model.Refresh();
-                    MessageBox.Show("R");
-                }
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using FileExplorerWPF.Explorer;
 using FileExplorerWPF.FileOperations;
 using FileExplorerWPF.Files;
+using FileExplorerWPF.Utils;
 using FileExplorerWPF.ViewModel;
 using System.Collections.Generic;
 using System.Windows;
@@ -43,11 +44,34 @@ namespace FileExplorerWPF
             {
                 ListBox parent = sender as ListBox;
                 List<string> files = leftListBox.SelectedItems.GetSelectedFiles();
-                if (files != null)
+                if (files != null && CheckDragging(files))
                 {
                     DragDropHelper.isDragging = true;
                     DragDrop.DoDragDrop(parent, files, DragDropEffects.Copy);
                 }
+                DragDropHelper.isDragging = false;
+            }
+        }
+        private void rightListBox_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
+            {
+                ListBox parent = sender as ListBox;
+                List<string> files = rightListBox.SelectedItems.GetSelectedFiles();
+                if (files != null && CheckDragging(files))
+                {
+                    DragDropHelper.isDragging = true;
+                    DragDrop.DoDragDrop(parent, files, DragDropEffects.Copy);
+                }
+                DragDropHelper.isDragging = false;
+            }
+        }
+
+        private void leftListBox_Drop(object sender, DragEventArgs e)
+        {
+            if (DragDropHelper.isDragging)
+            {
+                MessageBox.Show("XD");
                 DragDropHelper.isDragging = false;
             }
         }
@@ -60,5 +84,16 @@ namespace FileExplorerWPF
                 DragDropHelper.isDragging = false;
             }
         }
+
+        private bool CheckDragging(List<string> files)
+        {
+            foreach(var file in files)
+            {
+                if (file.IsDrive())
+                    return false;
+            }
+            return true;
+        }
+
     }
 }
