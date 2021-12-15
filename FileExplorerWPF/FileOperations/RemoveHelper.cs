@@ -10,12 +10,12 @@ namespace FileExplorerWPF.FileOperations
         public static void RemoveFile(this string file)
         {
 
-                if (file.IsFile())
-                {
-                    File.Delete(file);
-                }
-                else if (file.IsDirectory())
-                {
+            if (file.IsFile())
+            {
+                File.Delete(file);
+            }
+            else if (file.IsDirectory())
+            {
                 try
                 {
                     Directory.Delete(file);

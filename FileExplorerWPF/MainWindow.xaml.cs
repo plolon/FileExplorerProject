@@ -2,6 +2,7 @@
 using FileExplorerWPF.FileOperations;
 using FileExplorerWPF.Utils;
 using FileExplorerWPF.ViewModel;
+using FileExplorerWPF.Windows;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -120,7 +121,7 @@ namespace FileExplorerWPF
         {
             if (e.Key == Key.F8)
             {
-                testLab.Content=Current.ToString();
+                testLab.Content = Current.ToString();
 
                 if (Current == FileItemsType.Left)
                 {
@@ -134,6 +135,15 @@ namespace FileExplorerWPF
                 }
                 else { } //nothing
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            RemoveWindow inputDialog = new RemoveWindow("Please enter your name:", "John Doe");
+            if (inputDialog.ShowDialog() == true)
+                testLab.Content = inputDialog.Answer;
+
         }
     }
 }
