@@ -1,11 +1,11 @@
 ﻿using FileExplorerWPF.Explorer;
 using FileExplorerWPF.FileOperations;
-using FileExplorerWPF.Files;
 using FileExplorerWPF.Utils;
 using FileExplorerWPF.ViewModel;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace FileExplorerWPF
 {
@@ -19,6 +19,9 @@ namespace FileExplorerWPF
             get => this.DataContext as MainViewModel;
             set => this.DataContext = value;
         }
+
+        public FileItemsType? Current = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -113,5 +116,24 @@ namespace FileExplorerWPF
             return true;
         }
 
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.F8)
+            {
+                testLab.Content=Current.ToString();
+
+                if (Current == FileItemsType.Left)
+                {
+                    leftListBox.SelectedItems.GetSelectedFiles().ForEach(x => x.RemoveFile());
+                    Model.Refresh();
+                }
+                else if (Current == FileItemsType.Right)
+                {
+                    rightListBox.SelectedItems.GetSelectedFiles().ForEach(x => x.RemoveFile());
+                    Model.Refresh();
+                }
+                else { } //nothing
+            }
+        }
     }
 }

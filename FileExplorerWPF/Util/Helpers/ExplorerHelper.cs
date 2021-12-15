@@ -1,4 +1,6 @@
-﻿using Shell32;
+﻿using FileExplorerWPF.Files;
+using Shell32;
+using System.Collections.Generic;
 using System.IO;
 
 namespace FileExplorerWPF.Utils
@@ -54,6 +56,17 @@ namespace FileExplorerWPF.Utils
             }
 
             return string.Empty;
+        }
+
+        public static List<string> GetSelectedFiles(this System.Collections.IList data)
+        {
+            List<string> files = new List<string>();
+            foreach (var file in data)
+            {
+                var xd = (FileControl)file;
+                files.Add(xd.File.Path);
+            }
+            return files;
         }
     }
 }
