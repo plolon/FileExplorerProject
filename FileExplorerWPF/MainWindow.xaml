@@ -8,7 +8,8 @@
         xmlns:controls="clr-namespace:FileExplorerWPF.Controls"
         mc:Ignorable="d"
         Title="Twuj stary" Height="720" Width="1280"
-        Style="{DynamicResource CustomWindowStyle}">
+        Style="{DynamicResource CustomWindowStyle}"
+        KeyDown="Window_KeyDown">
     <Window.DataContext>
         <viewmodels:MainViewModel/>
     </Window.DataContext>
@@ -20,6 +21,7 @@
         <Grid VerticalAlignment="Top" Height="40" Grid.ColumnSpan="1">
             <TextBlock Text="Drive: " HorizontalAlignment="Left" Margin="10"></TextBlock>
             <ComboBox x:Name="driveSelectorLeft" Width="50" Height="20" HorizontalAlignment="Left" Margin="50,10,0,0" ItemsSource="{Binding DriveListLeft}" VerticalAlignment="Top" SelectionChanged="driveSelectorLeft_SelectionChanged"></ComboBox>
+            <Label x:Name="testLab" Content="Label" HorizontalAlignment="Left" Margin="441,10,0,0" VerticalAlignment="Top"/>
         </Grid>
         <Grid VerticalAlignment="Top" Height="40" Grid.Column="1" Grid.ColumnSpan="1">
             <TextBlock Text="Drive: " HorizontalAlignment="Left" Margin="10"></TextBlock>
