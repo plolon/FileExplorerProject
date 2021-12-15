@@ -6,29 +6,20 @@
         xmlns:local="clr-namespace:FileExplorerWPF" 
         xmlns:viewmodels="clr-namespace:FileExplorerWPF.ViewModel"
         xmlns:controls="clr-namespace:FileExplorerWPF.Controls"
+        xmlns:Converters="clr-namespace:FileExplorerWPF.Util.Converters"
         mc:Ignorable="d"
         Title="Twuj stary" Height="200" Width="400"
         WindowStartupLocation="CenterScreen"
         Style="{DynamicResource CustomWindowStyle}">
+    <Window.Resources>
+        <Converters:IconToImageConverter x:Key="IconToImageConverter1"/>
+        <Converters:DateTimeConverter x:Key="DateTimeConverter"/>
+        <Converters:FileSizeFormatConverter x:Key="FileSizeFormatConverter"/>
+        <Converters:IconToImageConverter x:Key="IconToImageConverter"/>
+    </Window.Resources>
     <Grid Margin="15">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <Image Source="/WpfTutorialSamples;component/Images/question32.png" Width="32" Height="32" Grid.RowSpan="2" Margin="20,0" />
-
-        <Label Name="lblQuestion" Grid.Column="1">Question:</Label>
-        <TextBox Name="txtAnswer" Grid.Column="1" Grid.Row="1" MinWidth="250">Answer</TextBox>
-
-        <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,15,0,0">
-            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">_Ok</Button>
-            <Button IsCancel="True" MinWidth="60">_Cancel</Button>
-        </WrapPanel>
+        <Image Source="{Binding Model.Icon, Converter={StaticResource IconToImageConverter1}}"></Image>
+        <Label x:Name="lblQuestion" Grid.Column="1" Content=""/>
+        <TextBox x:Name="txtAnswer" Grid.Column="1" Grid.Row="1" MinWidth="250"/>
     </Grid>
 </Window>

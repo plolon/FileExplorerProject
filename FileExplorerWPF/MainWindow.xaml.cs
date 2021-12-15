@@ -125,12 +125,12 @@ namespace FileExplorerWPF
 
                 if (Current == FileItemsType.Left)
                 {
-                    leftListBox.SelectedItems.GetSelectedFiles().ForEach(x => x.RemoveFile());
+                    leftListBox.SelectedItems.GetSelectedFiles().RemoveFiles();
                     Model.Refresh();
                 }
                 else if (Current == FileItemsType.Right)
                 {
-                    rightListBox.SelectedItems.GetSelectedFiles().ForEach(x => x.RemoveFile());
+                    rightListBox.SelectedItems.GetSelectedFiles().RemoveFiles();
                     Model.Refresh();
                 }
                 else { } //nothing
@@ -140,9 +140,7 @@ namespace FileExplorerWPF
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            RemoveWindow inputDialog = new RemoveWindow("Please enter your name:", "John Doe");
-            if (inputDialog.ShowDialog() == true)
-                testLab.Content = inputDialog.Answer;
+
 
         }
     }
