@@ -40,7 +40,7 @@ namespace FileExplorerWPF
 
         private void leftListBox_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if(e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
+            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
             {
                 ListBox parent = sender as ListBox;
                 List<string> files = leftListBox.SelectedItems.GetSelectedFiles();
@@ -71,8 +71,17 @@ namespace FileExplorerWPF
         {
             if (DragDropHelper.isDragging)
             {
-                MessageBox.Show("XD");
+                bool needRefresh = false;
                 DragDropHelper.isDragging = false;
+                List<string> files = e.Data.GetData(typeof(List<string>)) as List<string>;
+
+                foreach (string file in files)
+                {
+                    needRefresh = true;
+                    file.Move(Model.CurrentPathLeft);
+                }
+                if (needRefresh)
+                    Model.Refresh();
             }
         }
 
@@ -80,14 +89,23 @@ namespace FileExplorerWPF
         {
             if (DragDropHelper.isDragging)
             {
-                MessageBox.Show("XD");
+                bool needRefresh = false;
                 DragDropHelper.isDragging = false;
+                List<string> files = e.Data.GetData(typeof(List<string>)) as List<string>;
+
+                foreach (string file in files)
+                {
+                    needRefresh = true;
+                    file.Move(Model.CurrentPathRight);
+                }
+                if (needRefresh)
+                    Model.Refresh();
             }
         }
 
         private bool CheckDragging(List<string> files)
         {
-            foreach(var file in files)
+            foreach (var file in files)
             {
                 if (file.IsDrive())
                     return false;
