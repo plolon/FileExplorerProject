@@ -35,6 +35,11 @@ namespace FileExplorerWPF.Files
             {
                 NavigateToPathCallback?.Invoke(File);
             }
+            else
+            {
+                MainWindow window = Window.GetWindow(this) as MainWindow;
+                window.Current = File.FileItemsType;
+            }
         }
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
