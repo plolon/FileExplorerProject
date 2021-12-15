@@ -9,17 +9,28 @@ namespace FileExplorerWPF.FileOperations
     {
         public static void RemoveFile(this string file)
         {
-            try
-            {
+
                 if (file.IsFile())
+                {
                     File.Delete(file);
+                }
                 else if (file.IsDirectory())
+                {
+                try
+                {
                     Directory.Delete(file);
+                }
+                catch (IOException e)
+                {
+                    MessageBoxResult result = MessageBox.Show($"Remove: {file.GetFileName()}, with everything inside?", $"{e.Message}", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        Directory.Delete(file, true);
+                    }
+                    else { } //do nothing
+                }
             }
-            catch (IOException e)
-            {
-                MessageBox.Show($"{e.Message}",$"{e.GetType()}");
-            }
+
         }
     }
 }
