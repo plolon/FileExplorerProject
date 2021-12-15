@@ -8,7 +8,7 @@
         xmlns:controls="clr-namespace:FileExplorerWPF.Controls"
         xmlns:Converters="clr-namespace:FileExplorerWPF.Util.Converters"
         mc:Ignorable="d"
-        Title="Twuj stary" Height="200" Width="400"
+        Title="Twuj stary" Height="200" Width="350"
         WindowStartupLocation="CenterScreen"
         Style="{DynamicResource CustomWindowStyle}">
     <Window.Resources>
@@ -17,9 +17,28 @@
         <Converters:FileSizeFormatConverter x:Key="FileSizeFormatConverter"/>
         <Converters:IconToImageConverter x:Key="IconToImageConverter"/>
     </Window.Resources>
-    <Grid Margin="15">
-        <Image Source="{Binding Model.Icon, Converter={StaticResource IconToImageConverter1}}"></Image>
-        <Label x:Name="lblQuestion" Grid.Column="1" Content=""/>
-        <TextBox x:Name="txtAnswer" Grid.Column="1" Grid.Row="1" MinWidth="250"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Are you sure you want to permamently delete this file?" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+        <Image Source="{Binding Icon, Converter={StaticResource IconToImageConverter1}}" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.RowSpan="2" Width="35" Height="35"></Image>
+        <Grid HorizontalAlignment="Left" Grid.Row="1" Width="280" Height="80" Margin="60,0,0,0">
+            <TextBlock Text="Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Margin="0,2,0,0"/>
+            <TextBlock Text="DateModified:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Margin="0,20,0,0"/>
+            <TextBlock Text="SizeBytes:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Margin="0,38,0,0"/>
+            <TextBlock Text="Path:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Margin="0,56,0,0"/>
+            <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Margin="90,2,0,0"/>
+            <TextBlock Text="{Binding DateModified, Converter={StaticResource DateTimeConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Margin="90,20,0,0" />
+            <TextBlock Text="{Binding SizeBytes}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Margin="90,38,0,0" ></TextBlock>
+            <TextBlock Text="{Binding Path}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Margin="90,56,0,0" ></TextBlock>
+        </Grid>
+        <Grid VerticalAlignment="Bottom" Grid.Row="2" Height="25">
+            <Button HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="2" Width="100">YES TO ALL</Button>
+            <Button HorizontalAlignment="Right" Margin="0,0,120,0" Grid.Row="2" Width="100">YES</Button>
+            <Button HorizontalAlignment="Right" Margin="0,0,230,0" Grid.Row="2" Width="100">NO</Button>
+        </Grid>
     </Grid>
 </Window>

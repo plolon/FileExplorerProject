@@ -1,5 +1,6 @@
 ﻿using FileExplorerWPF.Files;
 using System;
+using System.Drawing;
 using System.Windows;
 
 namespace FileExplorerWPF.Windows
@@ -9,12 +10,10 @@ namespace FileExplorerWPF.Windows
     /// </summary>
     public partial class RemoveWindow : Window
     {
-        public FileModel Model { get; set; }
-
         public RemoveWindow(FileModel fileModel)
         {
             InitializeComponent();
-            Model = fileModel;
+            this.DataContext = fileModel;
         }
 
         private void btnDialogOk_Click(object sender, RoutedEventArgs e)
@@ -24,14 +23,7 @@ namespace FileExplorerWPF.Windows
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
-            txtAnswer.SelectAll();
-            txtAnswer.Focus();
-        }
 
-        public string Answer
-        {
-            get { return txtAnswer.Text; }
         }
-
     }
 }

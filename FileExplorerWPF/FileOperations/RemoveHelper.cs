@@ -22,20 +22,22 @@ namespace FileExplorerWPF.FileOperations
                     FileInfo fileInfo = new FileInfo(file);
                     FileModel fileModel = new FileModel()
                     {
-                        Icon = IconHelper.GetIconOfFile(file, true, false),
+                        Icon = IconHelper.GetIconOfFile(file, false, false),
                         Name = fileInfo.Name,
                         Path = fileInfo.FullName,
                         DateModified = fileInfo.LastWriteTime,
                         SizeBytes = fileInfo.Length,
                     };
-
-
+                    using(StreamWriter f = new StreamWriter("pupki.txt"))
+                    {
+                        f.Write("{0} {1} {2} {3}", fileModel.Name, fileModel.Path, fileModel.DateModified, fileModel.SizeBytes);
+                    }
 
                     if (!acceptAll)
                     {
-
+                        ShowDialog(fileModel, out acceptAll);
+                            //File.Delete(file);
                     }
-                    File.Delete(file);
                     
                 }
                 else if (file.IsDirectory())
@@ -56,7 +58,7 @@ namespace FileExplorerWPF.FileOperations
                 }
             }
         }
-        private static bool ShowDialog(FileModel model, bool acceptAll)
+        private static bool ShowDialog(FileModel model, out bool acceptAll)
         {
             acceptAll = false;
             RemoveWindow inputDialog = new RemoveWindow(model);
