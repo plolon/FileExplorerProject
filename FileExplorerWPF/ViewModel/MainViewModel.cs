@@ -143,7 +143,7 @@ namespace FileExplorerWPF.ViewModel
             AddGoBack(back, type);
             foreach (var file in files)
             {
-                FileControl fileControl = new FileControl(file);
+                FileControl fileControl = CreateFileControl(file);
                 AddFile(fileControl, type);
             }
         }
