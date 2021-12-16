@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FileExplorerWPF.Files"
-             xmlns:Util="clr-namespace:FileExplorerWPF.Util" xmlns:Converters="clr-namespace:FileExplorerWPF.Util.Converters"
+             xmlns:Util="clr-namespace:FileExplorerWPF.Util" 
+             xmlns:Converters="clr-namespace:FileExplorerWPF.Util.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="20" d:DesignWidth="600"
             KeyDown="UserControl_KeyDown">

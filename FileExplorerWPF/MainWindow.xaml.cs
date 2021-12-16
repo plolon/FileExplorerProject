@@ -2,6 +2,7 @@
 using FileExplorerWPF.FileOperations;
 using FileExplorerWPF.Utils;
 using FileExplorerWPF.ViewModel;
+using FileExplorerWPF.Windows;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -120,20 +121,27 @@ namespace FileExplorerWPF
         {
             if (e.Key == Key.F8)
             {
-                testLab.Content=Current.ToString();
+                testLab.Content = Current.ToString();
 
                 if (Current == FileItemsType.Left)
                 {
-                    leftListBox.SelectedItems.GetSelectedFiles().ForEach(x => x.RemoveFile());
+                    leftListBox.SelectedItems.GetSelectedFiles().RemoveFiles();
                     Model.Refresh();
                 }
                 else if (Current == FileItemsType.Right)
                 {
-                    rightListBox.SelectedItems.GetSelectedFiles().ForEach(x => x.RemoveFile());
+                    rightListBox.SelectedItems.GetSelectedFiles().RemoveFiles();
                     Model.Refresh();
                 }
                 else { } //nothing
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+
+
         }
     }
 }
