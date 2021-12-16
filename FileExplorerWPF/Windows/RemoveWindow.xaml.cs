@@ -10,20 +10,38 @@ namespace FileExplorerWPF.Windows
     /// </summary>
     public partial class RemoveWindow : Window
     {
-        public RemoveWindow(FileModel fileModel)
+
+        public Answer Response { get; set; }
+
+        public RemoveWindow(FileModel fileModel, string message)
         {
             InitializeComponent();
+            title.Text = message;
             this.DataContext = fileModel;
+            Response = Answer.No; //default
         }
 
-        private void btnDialogOk_Click(object sender, RoutedEventArgs e)
+        private void No_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
+            Response = Answer.No;
+            this.Close();
         }
-
-        private void Window_ContentRendered(object sender, EventArgs e)
+        private void Yes_Click(object sender, RoutedEventArgs e)
         {
-
+            Response = Answer.Yes;
+            this.Close();
         }
+
+        private void YesAll_Click(object sender, RoutedEventArgs e)
+        {
+            Response = Answer.YesToAll;
+            this.Close();
+        }
+
+        public enum Answer
+        {
+            Yes, No, YesToAll,
+        }
+
     }
 }

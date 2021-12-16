@@ -28,17 +28,13 @@ namespace FileExplorerWPF.FileOperations
                         DateModified = fileInfo.LastWriteTime,
                         SizeBytes = fileInfo.Length,
                     };
-                    using(StreamWriter f = new StreamWriter("pupki.txt"))
-                    {
-                        f.Write("{0} {1} {2} {3}", fileModel.Name, fileModel.Path, fileModel.DateModified, fileModel.SizeBytes);
-                    }
-
                     if (!acceptAll)
                     {
-                        ShowDialog(fileModel, out acceptAll);
-                            //File.Delete(file);
+                        if(ShowDialog(fileModel, out acceptAll, "Are you sure you want to permamently delete this file?"))
+                            File.Delete(file);
                     }
-                    
+                    else
+                        File.Delete(file);
                 }
                 else if (file.IsDirectory())
                 {
@@ -58,16 +54,25 @@ namespace FileExplorerWPF.FileOperations
                 }
             }
         }
-        private static bool ShowDialog(FileModel model, out bool acceptAll)
+        private static bool ShowDialog(FileModel model, out bool acceptAll, string message)
         {
             acceptAll = false;
-            RemoveWindow inputDialog = new RemoveWindow(model);
+            RemoveWindow inputDialog = new RemoveWindow(model, message);
             if (inputDialog.ShowDialog() == true)
             {
-                return true;
+                return false;
             }
-            return true;
+            switch (inputDialog.Response)
+            {
+                case RemoveWindow.Answer.Yes:
+                    return true;
+                case RemoveWindow.Answer.No:
+                    return false;
+                case RemoveWindow.Answer.YesToAll:
+                    acceptAll = true;
+                    return true;
+            }
+            return false;
         }
     }
-    
 }
