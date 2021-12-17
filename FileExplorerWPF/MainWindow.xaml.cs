@@ -22,7 +22,6 @@ namespace FileExplorerWPF
 
         public FileItemsType? Current = null;
 
-
         public MainWindow()
         {
             InitializeComponent();
@@ -30,6 +29,67 @@ namespace FileExplorerWPF
             Model.TryNavigateTo(null, FileItemsType.Right);
             DragDropHelper.isDragging = false;
         }
+
+        public void RemoveFiles()
+        {
+            if (Current == FileItemsType.Left)
+            {
+                leftListBox.SelectedItems.GetSelectedFiles().RemoveFiles();
+                Model.Refresh();
+            }
+            else if (Current == FileItemsType.Right)
+            {
+                rightListBox.SelectedItems.GetSelectedFiles().RemoveFiles();
+                Model.Refresh();
+            }
+        }
+
+        public void CreateFolder()
+        {
+            if (Current == FileItemsType.Left)
+            {
+                string path = Model.CurrentPathLeft;
+                if (!string.IsNullOrEmpty(path))
+                {
+                    CreateHelper.CreateFolder(path);
+                    Model.Refresh();
+                }
+            }
+            else if (Current == FileItemsType.Right)
+            {
+                string path = Model.CurrentPathRight;
+                if (!string.IsNullOrEmpty(path))
+                {
+                    CreateHelper.CreateFolder(path);
+                    Model.Refresh();
+                }
+            }
+        }
+
+        public void ChangeName()
+        {
+            if (Current == FileItemsType.Left)
+            {
+                MessageBox.Show("Changenameleft");
+            }
+            else if (Current == FileItemsType.Right)
+            {
+                MessageBox.Show("Changenameright");
+            }
+        }
+
+        public void Copy()
+        {
+
+        }
+
+        public void Paste()
+        {
+
+        }
+
+        #region Controls
+
         private void driveSelectorLeft_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             string path = driveSelectorLeft.SelectedItem.ToString();
@@ -121,46 +181,14 @@ namespace FileExplorerWPF
         {
             if (e.Key == Key.F8)
             {
-                testLab.Content = Current.ToString();
-
-                if (Current == FileItemsType.Left)
-                {
-                    leftListBox.SelectedItems.GetSelectedFiles().RemoveFiles();
-                    Model.Refresh();
-                }
-                else if (Current == FileItemsType.Right)
-                {
-                    rightListBox.SelectedItems.GetSelectedFiles().RemoveFiles();
-                    Model.Refresh();
-                }
+                RemoveFiles();
             }
             if(e.Key == Key.F9)
             {
-                if (Current == FileItemsType.Left)
-                {
-                    string path = Model.CurrentPathLeft;
-                    if (!string.IsNullOrEmpty(path))
-                    {
-                        CreateHelper.CreateFolder(path);
-                        Model.Refresh();
-                    }
-                }
-                else if (Current == FileItemsType.Right)
-                {
-                    string path = Model.CurrentPathRight;
-                    if (!string.IsNullOrEmpty(path))
-                    {
-                        CreateHelper.CreateFolder(path);
-                        Model.Refresh();
-                    }
-
-                }
+                CreateFolder();
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        #endregion Controls
     }
 }

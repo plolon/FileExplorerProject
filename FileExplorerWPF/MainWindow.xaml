@@ -21,8 +21,6 @@
         <Grid VerticalAlignment="Top" Height="40" Grid.ColumnSpan="1">
             <TextBlock Text="Drive: " HorizontalAlignment="Left" Margin="10"></TextBlock>
             <ComboBox x:Name="driveSelectorLeft" Width="50" Height="20" HorizontalAlignment="Left" Margin="50,10,0,0" SelectedItem="{Binding CurrentDiskL, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding DriveListLeft}" VerticalAlignment="Top" SelectionChanged="driveSelectorLeft_SelectionChanged"></ComboBox>
-            <Label x:Name="testLab" Content="Label" HorizontalAlignment="Left" Margin="441,10,0,0" VerticalAlignment="Top"/>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="247,10,0,10" Width="75" Click="Button_Click"/>
         </Grid>
         <Grid VerticalAlignment="Top" Height="40" Grid.Column="1" Grid.ColumnSpan="1">
             <TextBlock Text="Drive: " HorizontalAlignment="Left" Margin="10"></TextBlock>
@@ -31,12 +29,13 @@
         <controls:HeaderControl x:Name="leftHeader" Grid.Column="0" VerticalAlignment="Top"  Margin="0,40,0,0"></controls:HeaderControl>
         <controls:HeaderControl x:Name="rightHeader" Grid.Column="1" VerticalAlignment="Top"  Margin="0,40,0,0"></controls:HeaderControl>
         <ListBox x:Name="leftListBox" ItemsSource="{Binding FileItemsLeft, UpdateSourceTrigger=PropertyChanged}"
-                 HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,0" Grid.Column="0"
+                 HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,30" Grid.Column="0"
                  Grid.ColumnSpan="1" Width="620" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Extended"
                  MouseMove="leftListBox_MouseMove" Drop="leftListBox_Drop" AllowDrop="True"/>
         <ListBox x:Name="rightListBox" ItemsSource="{Binding FileItemsRight, UpdateSourceTrigger=PropertyChanged}"
-                 HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,0" Grid.Column="1"
+                 HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,30" Grid.Column="1"
                  Grid.ColumnSpan="1" Width="620" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Extended"
                  Drop="rightListBox_Drop" AllowDrop="True" MouseMove="rightListBox_MouseMove"/>
+        <controls:FooterControl x:Name="footer" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Margin="0,0,0,5"></controls:FooterControl>
     </Grid>
 </Window>
