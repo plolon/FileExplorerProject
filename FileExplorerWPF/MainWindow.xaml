@@ -31,12 +31,13 @@
         <controls:HeaderControl x:Name="leftHeader" Grid.Column="0" VerticalAlignment="Top"  Margin="0,40,0,0"></controls:HeaderControl>
         <controls:HeaderControl x:Name="rightHeader" Grid.Column="1" VerticalAlignment="Top"  Margin="0,40,0,0"></controls:HeaderControl>
         <ListBox x:Name="leftListBox" ItemsSource="{Binding FileItemsLeft, UpdateSourceTrigger=PropertyChanged}"
-                 HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,0" Grid.Column="0"
+                 HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,30" Grid.Column="0"
                  Grid.ColumnSpan="1" Width="620" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Extended"
                  MouseMove="leftListBox_MouseMove" Drop="leftListBox_Drop" AllowDrop="True"/>
         <ListBox x:Name="rightListBox" ItemsSource="{Binding FileItemsRight, UpdateSourceTrigger=PropertyChanged}"
-                 HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,0" Grid.Column="1"
+                 HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="0,60,0,30" Grid.Column="1"
                  Grid.ColumnSpan="1" Width="620" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Extended"
                  Drop="rightListBox_Drop" AllowDrop="True" MouseMove="rightListBox_MouseMove"/>
+        <controls:FooterControl x:Name="footer" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Margin="0,0,0,5"></controls:FooterControl>
     </Grid>
 </Window>
