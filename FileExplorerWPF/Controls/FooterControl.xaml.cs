@@ -33,7 +33,8 @@ namespace FileExplorerWPF.Controls
 
         private void Create(object sender, RoutedEventArgs e)
         {
-
+            MainWindow window = Window.GetWindow(this) as MainWindow;
+            window.CreateFolder();
         }
 
         private void ChangeName(object sender, RoutedEventArgs e)

@@ -45,6 +45,28 @@ namespace FileExplorerWPF
             }
         }
 
+        public void CreateFolder()
+        {
+            if (Current == FileItemsType.Left)
+            {
+                string path = Model.CurrentPathLeft;
+                if (!string.IsNullOrEmpty(path))
+                {
+                    CreateHelper.CreateFolder(path);
+                    Model.Refresh();
+                }
+            }
+            else if (Current == FileItemsType.Right)
+            {
+                string path = Model.CurrentPathRight;
+                if (!string.IsNullOrEmpty(path))
+                {
+                    CreateHelper.CreateFolder(path);
+                    Model.Refresh();
+                }
+            }
+        }
+
         private void driveSelectorLeft_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             string path = driveSelectorLeft.SelectedItem.ToString();
@@ -140,25 +162,7 @@ namespace FileExplorerWPF
             }
             if(e.Key == Key.F9)
             {
-                if (Current == FileItemsType.Left)
-                {
-                    string path = Model.CurrentPathLeft;
-                    if (!string.IsNullOrEmpty(path))
-                    {
-                        CreateHelper.CreateFolder(path);
-                        Model.Refresh();
-                    }
-                }
-                else if (Current == FileItemsType.Right)
-                {
-                    string path = Model.CurrentPathRight;
-                    if (!string.IsNullOrEmpty(path))
-                    {
-                        CreateHelper.CreateFolder(path);
-                        Model.Refresh();
-                    }
-
-                }
+                CreateFolder();
             }
         }
 
