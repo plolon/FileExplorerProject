@@ -34,13 +34,13 @@ namespace FileExplorerWPF.Controls
         private void Paste(object sender, RoutedEventArgs e)
         {
             MainWindow window = Window.GetWindow(this) as MainWindow;
-            window.Copy();
+            window.Paste();
         }
 
         private void Copy(object sender, RoutedEventArgs e)
         {
             MainWindow window = Window.GetWindow(this) as MainWindow;
-            window.Paste();
+            window.Copy();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using FileExplorerWPF.Explorer;
 using FileExplorerWPF.FileOperations;
+using FileExplorerWPF.Util.Helpers;
 using FileExplorerWPF.Utils;
 using FileExplorerWPF.ViewModel;
 using System.Collections.Generic;
@@ -80,12 +81,30 @@ namespace FileExplorerWPF
 
         public void Copy()
         {
-
+            if (Current == FileItemsType.Left)
+            {
+                List<string> files = leftListBox.SelectedItems.GetSelectedFiles();
+                CopyHelper.ClipBoard = files;
+            }
+            else if (Current == FileItemsType.Right)
+            {
+                List<string> files = rightListBox.SelectedItems.GetSelectedFiles();
+                CopyHelper.ClipBoard = files;
+            }
         }
 
         public void Paste()
         {
-
+            if (Current == FileItemsType.Left)
+            {
+                CopyHelper.CopyTo(Model.CurrentPathLeft);
+                Model.Refresh();
+            }
+            else if (Current == FileItemsType.Right)
+            {
+                CopyHelper.CopyTo(Model.CurrentPathRight);
+                Model.Refresh();
+            }
         }
 
         #region Controls
@@ -183,7 +202,7 @@ namespace FileExplorerWPF
             {
                 RemoveFiles();
             }
-            if(e.Key == Key.F9)
+            if (e.Key == Key.F9)
             {
                 CreateFolder();
             }

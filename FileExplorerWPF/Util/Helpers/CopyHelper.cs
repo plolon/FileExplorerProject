@@ -1,4 +1,5 @@
 ﻿using FileExplorerWPF.FileOperations;
+using FileExplorerWPF.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,8 @@ namespace FileExplorerWPF.Util.Helpers
             {
                 foreach (var file in clipBoard)
                 {
-                    file.Move(path);
+                    if (!file.IsDrive())
+                        file.Move(path);
                 }
             }
         }
