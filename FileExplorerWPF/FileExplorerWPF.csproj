@@ -65,6 +65,7 @@
       <DependentUpon>HeaderControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="FileOperations\CreateHelper.cs" />
+    <Compile Include="Util\Helpers\CopyHelper.cs" />
     <Compile Include="Windows\NewFolder.xaml.cs">
       <DependentUpon>NewFolder.xaml</DependentUpon>
     </Compile>
