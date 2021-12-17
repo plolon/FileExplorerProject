@@ -2,7 +2,6 @@
 using FileExplorerWPF.FileOperations;
 using FileExplorerWPF.Utils;
 using FileExplorerWPF.ViewModel;
-using FileExplorerWPF.Windows;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -138,8 +137,7 @@ namespace FileExplorerWPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NewFolder newfolder = new NewFolder();
-            newfolder.ShowDialog();
+
         }
     }
 }
