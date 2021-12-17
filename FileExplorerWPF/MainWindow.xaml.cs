@@ -22,7 +22,6 @@ namespace FileExplorerWPF
 
         public FileItemsType? Current = null;
 
-
         public MainWindow()
         {
             InitializeComponent();
@@ -66,6 +65,30 @@ namespace FileExplorerWPF
                 }
             }
         }
+
+        public void ChangeName()
+        {
+            if (Current == FileItemsType.Left)
+            {
+                MessageBox.Show("Changenameleft");
+            }
+            else if (Current == FileItemsType.Right)
+            {
+                MessageBox.Show("Changenameright");
+            }
+        }
+
+        public void Copy()
+        {
+
+        }
+
+        public void Paste()
+        {
+
+        }
+
+        #region Controls
 
         private void driveSelectorLeft_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
@@ -166,9 +189,6 @@ namespace FileExplorerWPF
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        #endregion Controls
     }
 }

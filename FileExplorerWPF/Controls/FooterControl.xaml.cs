@@ -39,17 +39,20 @@ namespace FileExplorerWPF.Controls
 
         private void ChangeName(object sender, RoutedEventArgs e)
         {
-
+            MainWindow window = Window.GetWindow(this) as MainWindow;
+            window.ChangeName();
         }
 
         private void Paste(object sender, RoutedEventArgs e)
         {
-
+            MainWindow window = Window.GetWindow(this) as MainWindow;
+            window.Copy();
         }
 
         private void Copy(object sender, RoutedEventArgs e)
         {
-
+            MainWindow window = Window.GetWindow(this) as MainWindow;
+            window.Paste();
         }
     }
 }
