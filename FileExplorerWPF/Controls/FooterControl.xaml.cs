@@ -24,5 +24,31 @@ namespace FileExplorerWPF.Controls
         {
             InitializeComponent();
         }
+
+        private void Remove(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = Window.GetWindow(this) as MainWindow;
+            window.RemoveFiles();
+        }
+
+        private void Create(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChangeName(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Paste(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Copy(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

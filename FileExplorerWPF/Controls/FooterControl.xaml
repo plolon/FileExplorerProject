@@ -7,10 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="1280">
     <Grid>
-        <Button HorizontalAlignment="Right" Width="250" Margin="5,0,5,0">F8 REMOVE FILE</Button>
-        <Button HorizontalAlignment="Right" Width="250" Margin="5,0,260,0">F7 CREATE FOLDER</Button>
-        <Button HorizontalAlignment="Right" Width="250" Margin="5,0,515,0">F6 CHANGE NAME</Button>
-        <Button HorizontalAlignment="Right" Width="250" Margin="5,0,770,0">F5 PASTE</Button>
-        <Button HorizontalAlignment="Right" Width="250" Margin="5,0,1025,0">F4 COPY</Button>
+        <Button HorizontalAlignment="Right" Width="250" Margin="5,0,5,0" Click="Remove">F8 REMOVE FILE</Button>
+        <Button HorizontalAlignment="Right" Width="250" Margin="5,0,260,0" Click="Create">F7 CREATE FOLDER</Button>
+        <Button HorizontalAlignment="Right" Width="250" Margin="5,0,515,0" Click="ChangeName">F6 CHANGE NAME</Button>
+        <Button HorizontalAlignment="Right" Width="250" Margin="5,0,770,0" Click="Paste">F5 PASTE</Button>
+        <Button HorizontalAlignment="Right" Width="250" Margin="5,0,1025,0" Click="Copy">F4 COPY</Button>
     </Grid>
 </UserControl>

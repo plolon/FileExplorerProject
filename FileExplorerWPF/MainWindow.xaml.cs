@@ -30,6 +30,21 @@ namespace FileExplorerWPF
             Model.TryNavigateTo(null, FileItemsType.Right);
             DragDropHelper.isDragging = false;
         }
+
+        public void RemoveFiles()
+        {
+            if (Current == FileItemsType.Left)
+            {
+                leftListBox.SelectedItems.GetSelectedFiles().RemoveFiles();
+                Model.Refresh();
+            }
+            else if (Current == FileItemsType.Right)
+            {
+                rightListBox.SelectedItems.GetSelectedFiles().RemoveFiles();
+                Model.Refresh();
+            }
+        }
+
         private void driveSelectorLeft_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             string path = driveSelectorLeft.SelectedItem.ToString();
@@ -121,18 +136,7 @@ namespace FileExplorerWPF
         {
             if (e.Key == Key.F8)
             {
-                testLab.Content = Current.ToString();
-
-                if (Current == FileItemsType.Left)
-                {
-                    leftListBox.SelectedItems.GetSelectedFiles().RemoveFiles();
-                    Model.Refresh();
-                }
-                else if (Current == FileItemsType.Right)
-                {
-                    rightListBox.SelectedItems.GetSelectedFiles().RemoveFiles();
-                    Model.Refresh();
-                }
+                RemoveFiles();
             }
             if(e.Key == Key.F9)
             {
