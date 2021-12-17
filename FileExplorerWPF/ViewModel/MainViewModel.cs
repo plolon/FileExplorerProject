@@ -1,18 +1,18 @@
 ﻿using FileExplorerWPF.Explorer;
 using FileExplorerWPF.Files;
-using FileExplorerWPF.Util;
 using FileExplorerWPF.Util.Helpers;
 using FileExplorerWPF.Utils;
 using REghZyFramework.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 
 namespace FileExplorerWPF.ViewModel
 {
-    public class MainViewModel : BaseViewModel
+    public class MainViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public ObservableCollection<FileControl> FileItemsLeft { get; set; }
         public ObservableCollection<FileControl> FileItemsRight { get; set; }
@@ -20,6 +20,29 @@ namespace FileExplorerWPF.ViewModel
         public string CurrentPathRight { get; set; }
         public List<string> DriveListLeft { get; set; }
         public List<string> DriveListRight { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        private string currentDiskL;
+        private string currentDiskR;
+        public string CurrentDiskL
+        {
+            get { return currentDiskL; }
+            set { currentDiskL = value; NotifyPropertyChanged("CurrentDiskL"); }
+        }
+        public string CurrentDiskR
+        {
+            get { return currentDiskR; }
+            set { currentDiskR = value; NotifyPropertyChanged("CurrentDiskR"); }
+        }
 
         public MainViewModel()
         {
@@ -42,7 +65,6 @@ namespace FileExplorerWPF.ViewModel
             if (string.IsNullOrEmpty(path))
             {
                 ClearFiles(type);
-
                 foreach (var drive in Fetcher.GetDrives(type))
                 {
                     FileControl fileControl = CreateFileControl(drive);
@@ -71,10 +93,27 @@ namespace FileExplorerWPF.ViewModel
                     FileControl fileControl = CreateFileControl(dir);
                     AddFile(fileControl, type);
                 }
+                if (path.IsDrive())
+                {
+                    updateDriveList(path, type);
+                }
             }
             else
             {
                 throw new System.Exception($"IDK what just happened {path}");
+            }
+        }
+
+        private void updateDriveList(string path, FileItemsType type)
+        {
+            switch (type)
+            {
+                case FileItemsType.Left:
+                    CurrentDiskL = DriveListLeft.FirstOrDefault(x => x.Equals(path));
+                    break;
+                case FileItemsType.Right:
+                    CurrentDiskR = DriveListRight.FirstOrDefault(x => x.Equals(path));
+                    break;
             }
         }
 
