@@ -21,7 +21,6 @@ namespace FileExplorerWPF.FileOperations
         private static bool ShowDialog(out string name)
         {
             NewFolder newfolder = new NewFolder();
-            newfolder.ShowDialog();
             name = "";
             if (newfolder.ShowDialog() == true)
             {
