@@ -21,7 +21,10 @@ namespace FileExplorerWPF.ViewModel
         public List<string> DriveListLeft { get; set; }
         public List<string> DriveListRight { get; set; }
 
+        #pragma warning disable CS0108
         public event PropertyChangedEventHandler PropertyChanged;
+        #pragma warning restore CS0108
+
         private void NotifyPropertyChanged(string propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

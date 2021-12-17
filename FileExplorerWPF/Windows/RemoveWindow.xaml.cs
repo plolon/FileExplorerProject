@@ -1,6 +1,4 @@
 ﻿using FileExplorerWPF.Files;
-using System;
-using System.Drawing;
 using System.Windows;
 
 namespace FileExplorerWPF.Windows
