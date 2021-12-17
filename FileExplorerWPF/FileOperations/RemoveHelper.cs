@@ -39,7 +39,7 @@ namespace FileExplorerWPF.FileOperations
                         {
                             Directory.Delete(file);
                         }
-                        catch (IOException e)
+                        catch (IOException)
                         {
                             DirectoryInfo dInfo = new DirectoryInfo(file);
                             FileModel dModel = new FileModel()
