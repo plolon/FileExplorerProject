@@ -24,7 +24,7 @@
         </Grid>
         <Grid VerticalAlignment="Top" Height="40" Grid.Column="1" Grid.ColumnSpan="1">
             <TextBlock Text="Drive: " HorizontalAlignment="Left" Margin="10"></TextBlock>
-            <ComboBox x:Name="driveSelectorRight" Width="50" HorizontalAlignment="Left" Margin="50,10,0,10" ItemsSource="{Binding DriveListRight}" SelectionChanged="driveSelectorRight_SelectionChanged"/>
+            <ComboBox x:Name="driveSelectorRight" Width="50" HorizontalAlignment="Left" Margin="50,10,0,10" SelectedItem="{Binding CurrentDiskR, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding DriveListRight}" SelectionChanged="driveSelectorRight_SelectionChanged"/>
         </Grid>
         <controls:HeaderControl x:Name="leftHeader" Grid.Column="0" VerticalAlignment="Top"  Margin="0,40,0,0"></controls:HeaderControl>
         <controls:HeaderControl x:Name="rightHeader" Grid.Column="1" VerticalAlignment="Top"  Margin="0,40,0,0"></controls:HeaderControl>
