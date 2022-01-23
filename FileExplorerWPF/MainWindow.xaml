@@ -7,7 +7,7 @@
         xmlns:viewmodels="clr-namespace:FileExplorerWPF.ViewModel"
         xmlns:controls="clr-namespace:FileExplorerWPF.Controls"
         mc:Ignorable="d"
-        Title="Twuj stary" Height="720" Width="1280"
+        Title="Dawid Bańczak" Height="720" Width="1280"
         Style="{DynamicResource CustomWindowStyle}"
         KeyDown="Window_KeyDown">
     <Window.DataContext>
